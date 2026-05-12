@@ -29,6 +29,36 @@ app.get("/", (req, res) => {
 
 // TODO: Task 1
 
+import { retrieveUsers, retrieveUserById, addFriend } from "./data/users-dao.js";
+
+
+app.get("/users", (req, res) => {
+  const users = retrieveUsers();
+  return res.json(users);
+})
+
+
+app.get("/users/:id", (req, res) => {
+  const id = req.params.id;
+  const user = retrieveUserById(id);
+  if (!user) { // same as user === undefined
+    return res.sendStatus(404);
+  }
+  return res.json(user);
+});
+
+
+app.post("/users/:id/friends", (req, res) => {
+  const id_1 = req.params.id;
+  const id_2 = req.body.id;
+  const friendsList = addFriend(id_1, id_2);
+  if (friendsList) {
+    return res.json(friendsList);
+  } else {
+    return res.sendStatus(404);
+  }
+})
+
 
 const PORT = process.env.PORT ?? 3000;
 app.listen(PORT, () => {
