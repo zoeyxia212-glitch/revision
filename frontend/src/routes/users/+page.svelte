@@ -20,6 +20,7 @@
       <!-- 显示用户名：对应题目要求 display name（展示名字） -->
       <p>{user.name}</p>
       <a href="/users/{user.id}">View Profile</a>
+      <p><a href="/users/{user.id}">{user.name}</a></p>
 
     </div>
   </div>

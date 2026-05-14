@@ -28,3 +28,12 @@
     margin: 20px 0;
   }
 </style>
+
+<img 
+  src="/avatars/{user.avatar}" 
+  alt="avatar" 
+  class="avatar"
+  on:error={(e) => {
+    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='%23cccccc'/%3E%3C/svg%3E";
+  }}
+<!-- />你可以给头像加上 on:error 事件，和列表页一样处理不存在的头像： -->
